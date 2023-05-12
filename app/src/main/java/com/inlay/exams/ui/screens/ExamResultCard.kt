@@ -155,10 +155,8 @@ fun ExamResultCard(viewModel: ExamsViewModel) {
                                 shape = examsFieldShape
                             )
 
-                            ExposedDropdownMenu(
-                                expanded = examDropdownExpanded.value,
-                                onDismissRequest = { examDropdownExpanded.value = false }
-                            ) {
+                            ExposedDropdownMenu(expanded = examDropdownExpanded.value,
+                                onDismissRequest = { examDropdownExpanded.value = false }) {
                                 availableExams.forEach { exam ->
                                     DropdownMenuItem(
                                         text = {
@@ -212,8 +210,7 @@ fun ExamResultCard(viewModel: ExamsViewModel) {
                             ExposedDropdownMenu(
                                 expanded = teacherDropdownExpanded.value,
                                 onDismissRequest = { teacherDropdownExpanded.value = false },
-                                modifier = Modifier
-                                    .fillMaxWidth()
+                                modifier = Modifier.fillMaxWidth()
                             ) {
                                 teachers.forEach { teacher ->
                                     DropdownMenuItem(
@@ -235,18 +232,14 @@ fun ExamResultCard(viewModel: ExamsViewModel) {
             if (passedExams.size < 3) {
                 Row {
                     Text(
-                        text = "Your score is:",
-                        color = scoreColor,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = 16.dp)
+                        text = "Your score is: ", modifier = Modifier.padding(top = 16.dp)
                     )
 
                     Text(
-                        text = "$score", fontWeight = FontWeight.Bold,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = 16.dp)
+                        text = "$score",
+                        fontWeight = FontWeight.Bold,
+                        color = scoreColor,
+                        modifier = Modifier.padding(top = 16.dp)
                     )
                 }
 
@@ -263,20 +256,21 @@ fun ExamResultCard(viewModel: ExamsViewModel) {
                     enabled = buttonState,
                     elevation = ButtonDefaults.buttonElevation(14.dp)
                 ) {
-                    Text("Issue Grade", modifier = Modifier.padding(4.dp))
+                    Text(
+                        "Issue Grade",
+                        modifier = Modifier.padding(4.dp)
+                    )
                 }
             } else {
                 Row {
                     Text(
                         text = "Your average grade is: ",
-                        modifier = Modifier
-                            .padding(top = 16.dp)
+                        modifier = Modifier.padding(top = 16.dp)
                     )
                     Text(
                         text = "$avgScore",
                         fontWeight = FontWeight.Bold,
-                        modifier = Modifier
-                            .padding(top = 16.dp)
+                        modifier = Modifier.padding(top = 16.dp)
                     )
                 }
                 Button(
