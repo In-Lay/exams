@@ -99,8 +99,8 @@ fun LoginScreen(
 
         Button(
             onClick = {
-                if (applicantName.value == "") nameSupportText.value = "Name is empty"
-                else if (applicantSecondName.value == "") secondNameSupportText.value =
+                if (applicantName.value.isEmpty()) nameSupportText.value = "Name is empty"
+                else if (applicantSecondName.value.isEmpty()) secondNameSupportText.value =
                     "Second Name is empty"
                 else viewModel.register(applicantName.value, applicantSecondName.value)
             }, modifier = Modifier
@@ -116,8 +116,8 @@ fun LoginScreen(
 
         Button(
             onClick = {
-                if (applicantName.value == "") nameSupportText.value = "Name is empty"
-                else if (applicantSecondName.value == "") secondNameSupportText.value =
+                if (applicantName.value.isEmpty()) nameSupportText.value = "Name is empty"
+                else if (applicantSecondName.value.isEmpty()) secondNameSupportText.value =
                     "Second Name is empty"
                 else viewModel.login(applicantName.value, applicantSecondName.value)
             }, modifier = Modifier

@@ -1,7 +1,6 @@
 package com.inlay.exams.ui.screens
 
 
-import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -36,9 +35,7 @@ import com.inlay.exams.ui.viewModel.profile.ProfileViewModel
 @Composable
 fun ProfileScreen(viewModel: ProfileViewModel) {
 
-
     val applicant by viewModel.applicant.collectAsState()
-    Log.d("LogoutTag", "applicant: $applicant")
 
     applicant?.let {
         viewModel.getFullExamInfoById(it.applicantId)

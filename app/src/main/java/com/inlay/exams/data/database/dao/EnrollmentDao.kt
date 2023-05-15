@@ -109,7 +109,6 @@ interface EnrollmentDao {
     )
     suspend fun getApplicantExamResultsByApplicantId(applicantId: Int): List<ApplicantExamResult>
 
-
     @Query("SELECT * FROM Exam")
     fun getAllExams(): Flow<List<Exam>>
 
