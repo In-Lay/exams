@@ -31,6 +31,7 @@ import com.inlay.exams.data.database.dataModels.ApplicantExamResult
 import com.inlay.exams.ui.theme.GreenMedium
 import com.inlay.exams.ui.theme.OrangeMedium
 import com.inlay.exams.ui.viewModel.profile.ProfileViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
 fun ProfileScreen(viewModel: ProfileViewModel) {

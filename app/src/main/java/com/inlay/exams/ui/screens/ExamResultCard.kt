@@ -40,6 +40,7 @@ import com.inlay.exams.data.database.entities.Teacher
 import com.inlay.exams.ui.theme.GreenMedium
 import com.inlay.exams.ui.theme.OrangeMedium
 import com.inlay.exams.ui.viewModel.exams.ExamsViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

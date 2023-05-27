@@ -1,20 +1,27 @@
 package com.inlay.exams.ui.viewModel.exams
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.inlay.exams.data.database.entities.Applicant
 import com.inlay.exams.data.database.entities.Exam
 import com.inlay.exams.data.database.entities.Teacher
-import com.inlay.exams.di.getOrCreateLoginScope
 import com.inlay.exams.domain.database.UseCases
 import com.inlay.exams.ui.viewModel.LoginViewModel
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedInject
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 import kotlin.random.Random
 
-class ExamsViewModelImpl(
+@HiltViewModel
+class ExamsViewModelImpl @Inject constructor(
+    private val loginViewModel: LoginViewModel,
     private val useCases: UseCases
 ) : ExamsViewModel() {
-    private val loginViewModel: LoginViewModel = getOrCreateLoginScope().get()
+//    @Inject
+//    lateinit var loginViewModel: LoginViewModel
 
     private val _isLogged = loginViewModel.loginScreenState
     override val isLogged = _isLogged
@@ -93,4 +100,7 @@ class ExamsViewModelImpl(
             }
         }
     }
+
+//    @AssistedFactory
+//    interface Factory : AssistedSavedStateViewModelFactory<ExamsViewModelImpl>
 }

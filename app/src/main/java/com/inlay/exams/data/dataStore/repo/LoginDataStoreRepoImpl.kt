@@ -3,8 +3,12 @@ package com.inlay.exams.data.dataStore.repo
 import com.inlay.exams.data.dataStore.LoginDataStore
 import com.inlay.exams.data.dataStore.LoginDataStoreModel
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class LoginDataStoreRepoImpl(private val loginDataStore: LoginDataStore) : LoginDataStoreRepo {
+@Singleton
+class LoginDataStoreRepoImpl @Inject constructor(private val loginDataStore: LoginDataStore) :
+    LoginDataStoreRepo {
 
     override suspend fun saveLoginData(loginDataStoreModel: LoginDataStoreModel) {
         loginDataStore.saveLoginData(loginDataStoreModel)

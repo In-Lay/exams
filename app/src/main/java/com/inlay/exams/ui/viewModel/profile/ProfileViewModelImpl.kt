@@ -4,18 +4,20 @@ import androidx.lifecycle.viewModelScope
 import com.inlay.exams.data.dataStore.LoginDataStoreModel
 import com.inlay.exams.data.database.dataModels.ApplicantExamResult
 import com.inlay.exams.data.database.entities.Teacher
-import com.inlay.exams.di.getOrCreateLoginScope
 import com.inlay.exams.domain.dataStore.SaveDataStore
 import com.inlay.exams.domain.database.UseCases
 import com.inlay.exams.ui.viewModel.LoginViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ProfileViewModelImpl(
+@HiltViewModel
+class ProfileViewModelImpl @Inject constructor(
+    private val loginViewModel: LoginViewModel,
     private val useCases: UseCases,
     private val saveDataStore: SaveDataStore
 ) : ProfileViewModel() {
-    private val loginViewModel: LoginViewModel = getOrCreateLoginScope().get()
 
     private val _applicant = loginViewModel.applicant
     override val applicant = _applicant

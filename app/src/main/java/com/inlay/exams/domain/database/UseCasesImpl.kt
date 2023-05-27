@@ -8,8 +8,11 @@ import com.inlay.exams.data.database.entities.Faculty
 import com.inlay.exams.data.database.entities.Teacher
 import com.inlay.exams.data.database.repo.ExamsDatabaseRepo
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class UseCasesImpl(private val examsDatabaseRepo: ExamsDatabaseRepo) : UseCases {
+class UseCasesImpl @Inject constructor(private val examsDatabaseRepo: ExamsDatabaseRepo) :
+    UseCases {
     override suspend fun insertApplicant(applicant: Applicant) {
         examsDatabaseRepo.insertApplicant(applicant)
     }

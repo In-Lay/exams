@@ -5,10 +5,16 @@ import androidx.lifecycle.viewModelScope
 import com.inlay.exams.data.database.entities.Applicant
 import com.inlay.exams.domain.dataStore.GetDataStore
 import com.inlay.exams.domain.database.UseCases
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LoginViewModelImpl(getDataStore: GetDataStore, useCases: UseCases) : LoginViewModel() {
+@HiltViewModel
+class LoginViewModelImpl @Inject constructor(
+    getDataStore: GetDataStore,
+    useCases: UseCases
+) : LoginViewModel() {
     private val _loginScreenState = mutableStateOf(false)
     override val loginScreenState = _loginScreenState
 

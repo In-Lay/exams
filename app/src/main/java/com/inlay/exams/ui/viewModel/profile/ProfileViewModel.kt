@@ -4,9 +4,11 @@ import androidx.lifecycle.ViewModel
 import com.inlay.exams.data.database.dataModels.ApplicantExamResult
 import com.inlay.exams.data.database.entities.Applicant
 import com.inlay.exams.data.database.entities.Teacher
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.StateFlow
+import javax.inject.Inject
 
-abstract class ProfileViewModel : ViewModel() {
+abstract class ProfileViewModel: ViewModel() {
     abstract val applicant: StateFlow<Applicant?>
 
     abstract val fullExamResultById: StateFlow<List<ApplicantExamResult>>

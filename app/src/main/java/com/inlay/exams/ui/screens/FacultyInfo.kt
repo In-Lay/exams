@@ -24,6 +24,7 @@ import androidx.constraintlayout.compose.Dimension
 import com.inlay.exams.ui.theme.GreenMedium
 import com.inlay.exams.ui.uiModels.ApplicantWithAvgScoreUiModel
 import com.inlay.exams.ui.viewModel.facultyInfo.FacultyInfoViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
 fun FacultyInfo(viewModel: FacultyInfoViewModel) {

@@ -11,8 +11,11 @@ import com.inlay.exams.data.database.entities.Teacher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class ExamsDatabaseRepoImpl(private val enrollmentDao: EnrollmentDao) : ExamsDatabaseRepo {
+class ExamsDatabaseRepoImpl @Inject constructor(private val enrollmentDao: EnrollmentDao) :
+    ExamsDatabaseRepo {
     override suspend fun insertApplicant(applicant: Applicant) {
         enrollmentDao.suspendInsertApplicant(applicant)
     }

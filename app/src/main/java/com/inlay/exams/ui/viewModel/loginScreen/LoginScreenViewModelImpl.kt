@@ -1,14 +1,19 @@
 package com.inlay.exams.ui.viewModel.loginScreen
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.inlay.exams.data.dataStore.LoginDataStoreModel
 import com.inlay.exams.data.database.entities.Applicant
 import com.inlay.exams.domain.dataStore.SaveDataStore
 import com.inlay.exams.domain.database.UseCases
+import dagger.assisted.Assisted
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LoginScreenViewModelImpl(
+@HiltViewModel
+class LoginScreenViewModelImpl @Inject constructor(
     private val useCases: UseCases,
     private val saveDataStore: SaveDataStore,
 ) : LoginScreenViewModel() {
@@ -45,4 +50,7 @@ class LoginScreenViewModelImpl(
             }
         }
     }
+
+//    @AssistedFactory
+//    interface Factory : AssistedSavedStateViewModelFactory<LoginScreenViewModelImpl>
 }

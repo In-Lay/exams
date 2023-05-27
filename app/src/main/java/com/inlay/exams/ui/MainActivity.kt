@@ -3,6 +3,7 @@ package com.inlay.exams.ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.BottomAppBar
@@ -16,13 +17,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.AbstractSavedStateViewModelFactory
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.inlay.exams.di.getOrCreateLoginScope
 import com.inlay.exams.ui.screens.ExamResultCard
 import com.inlay.exams.ui.screens.FacultyInfo
 import com.inlay.exams.ui.screens.LoginScreen
@@ -33,15 +35,23 @@ import com.inlay.exams.ui.viewModel.exams.ExamsViewModel
 import com.inlay.exams.ui.viewModel.facultyInfo.FacultyInfoViewModel
 import com.inlay.exams.ui.viewModel.loginScreen.LoginScreenViewModel
 import com.inlay.exams.ui.viewModel.profile.ProfileViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    private val examsViewModel: ExamsViewModel by viewModel()
-    private val facultyInfoViewModel: FacultyInfoViewModel by viewModel()
-    private val profileViewModel: ProfileViewModel by viewModel()
-    private val loginScreenViewModel: LoginScreenViewModel by viewModel()
-    private val loginViewModel: LoginViewModel = getOrCreateLoginScope().get()
+//    @Inject
+//    lateinit var loginViewModel: LoginViewModel
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private val facultyInfoViewModel by viewModels<FacultyInfoViewModel> { viewModelFactory }
+    private val loginScreenViewModel by viewModels<LoginScreenViewModel> { viewModelFactory }
+    private val profileViewModel by viewModels<ProfileViewModel> { viewModelFactory }
+    private val examsViewModel by viewModels<ExamsViewModel> { viewModelFactory }
+    private val loginViewModel by viewModels<LoginViewModel> { viewModelFactory }
 
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -93,23 +103,27 @@ class MainActivity : ComponentActivity() {
                         ) {
                             if (loginScreenState.value) {
                                 composable(Screen.ProfileScreen.route) {
+//                                    val profileViewModel = hiltViewModel<ProfileViewModel>()
                                     ProfileScreen(
                                         profileViewModel
                                     )
                                 }
                             } else {
                                 composable(Screen.LoginScreen.route) {
+//                                    val loginScreenViewModel = hiltViewModel<LoginScreenViewModel>()
                                     LoginScreen(
                                         loginScreenViewModel
                                     )
                                 }
                             }
                             composable(Screen.FacultyInfo.route) {
+//                                val facultyInfoViewModel = hiltViewModel<FacultyInfoViewModel>()
                                 FacultyInfo(
                                     facultyInfoViewModel
                                 )
                             }
                             composable(Screen.Exams.route) {
+//                                val examsViewModel = hiltViewModel<ExamsViewModel>()
                                 ExamResultCard(examsViewModel)
                             }
                         }

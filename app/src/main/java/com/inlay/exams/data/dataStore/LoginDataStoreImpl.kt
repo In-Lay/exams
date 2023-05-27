@@ -4,8 +4,10 @@ import android.content.Context
 import androidx.datastore.preferences.core.edit
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class LoginDataStoreImpl(private val context: Context) : LoginDataStore {
+class LoginDataStoreImpl @Inject constructor(private val context: Context) : LoginDataStore {
     override suspend fun saveLoginData(loginDataStoreModel: LoginDataStoreModel) {
         context.loginDataStore.edit {
             it[DataStoreKeys.IS_LOGGED] = loginDataStoreModel.loginState

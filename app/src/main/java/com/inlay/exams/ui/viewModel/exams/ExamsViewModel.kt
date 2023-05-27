@@ -5,9 +5,12 @@ import androidx.lifecycle.ViewModel
 import com.inlay.exams.data.database.entities.Applicant
 import com.inlay.exams.data.database.entities.Exam
 import com.inlay.exams.data.database.entities.Teacher
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.StateFlow
+import javax.inject.Inject
 
-abstract class ExamsViewModel : ViewModel() {
+
+abstract class ExamsViewModel: ViewModel() {
     abstract val isLogged: State<Boolean>
 
     abstract val applicant: StateFlow<Applicant?>
@@ -18,7 +21,7 @@ abstract class ExamsViewModel : ViewModel() {
 
     abstract val passedExams: StateFlow<List<Exam>>
 
-    abstract val availableExams:StateFlow<List<Exam>>
+    abstract val availableExams: StateFlow<List<Exam>>
 
     abstract val gradeScore: StateFlow<Int>
 

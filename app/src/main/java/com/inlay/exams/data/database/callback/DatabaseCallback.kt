@@ -8,13 +8,14 @@ import com.inlay.exams.data.database.entities.Exam
 import com.inlay.exams.data.database.entities.Faculty
 import com.inlay.exams.data.database.entities.Grade
 import com.inlay.exams.data.database.entities.Teacher
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 import java.util.concurrent.Executors
+import javax.inject.Inject
 import kotlin.random.Random
 
-class DatabaseCallback : RoomDatabase.Callback(), KoinComponent {
-    private val enrollmentDao: EnrollmentDao by inject()
+class DatabaseCallback : RoomDatabase.Callback() {
+    //    private val enrollmentDao: EnrollmentDao by inject()
+    @Inject
+    lateinit var enrollmentDao: EnrollmentDao
 
     override fun onCreate(db: SupportSQLiteDatabase) {
         super.onCreate(db)
