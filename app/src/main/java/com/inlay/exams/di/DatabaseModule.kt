@@ -50,10 +50,10 @@ class DatabaseModule {
             return UseCasesImpl(examsDatabaseRepo)
         }
 
-//        @Provides
-//        @Singleton
-//        fun provideLoginViewModel(getDataStore: GetDataStore, useCases: UseCases): LoginViewModel {
-//            return LoginViewModelImpl(getDataStore, useCases)
-//        }
+        @Provides
+        @Singleton
+        fun provideLoginViewModel(getDataStore: GetDataStore, useCases: UseCases): LoginViewModel {
+            return LoginViewModelImpl(getDataStore, useCases)
+        }
     }
 }

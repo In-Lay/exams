@@ -1,55 +1,61 @@
 package com.inlay.exams.ui.viewModel.profile
 
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.inlay.exams.data.dataStore.LoginDataStoreModel
 import com.inlay.exams.data.database.dataModels.ApplicantExamResult
+import com.inlay.exams.data.database.entities.Applicant
 import com.inlay.exams.data.database.entities.Teacher
 import com.inlay.exams.domain.dataStore.SaveDataStore
 import com.inlay.exams.domain.database.UseCases
 import com.inlay.exams.ui.viewModel.LoginViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ProfileViewModelImpl @Inject constructor(
-    private val loginViewModel: LoginViewModel,
+class ProfileViewModel @Inject constructor(
+    loginViewModel: LoginViewModel,
     private val useCases: UseCases,
     private val saveDataStore: SaveDataStore
-) : ProfileViewModel() {
+) : ViewModel() {
+
+//    @Inject
+//    lateinit var loginViewModel: LoginViewModel
 
     private val _applicant = loginViewModel.applicant
-    override val applicant = _applicant
+    val applicant: StateFlow<Applicant?> = _applicant
 
     private val _fullExamResultById = MutableStateFlow<List<ApplicantExamResult>>(emptyList())
-    override val fullExamResultById = _fullExamResultById
+    val fullExamResultById: StateFlow<List<ApplicantExamResult>> = _fullExamResultById
 
     private val _averageScore = MutableStateFlow<Int?>(0)
-    override val averageScore = _averageScore
+    val averageScore: StateFlow<Int?> = _averageScore
 
     private val _facultyInfoTeacher = MutableStateFlow(Teacher(0, "", ""))
-    override val facultyInfoTeacher = _facultyInfoTeacher
+    val facultyInfoTeacher: StateFlow<Teacher> = _facultyInfoTeacher
 
-    override fun getTeacherById(teacherId: Int) {
+    fun getTeacherById(teacherId: Int) {
         viewModelScope.launch {
             _facultyInfoTeacher.value = useCases.getTeacherById(teacherId)
         }
     }
 
-    override fun calculateAverageScore(applicantId: Int) {
+    fun calculateAverageScore(applicantId: Int) {
         viewModelScope.launch {
             _averageScore.value = useCases.getAverageScore(applicantId)
         }
     }
 
-    override fun getFullExamInfoById(applicantId: Int) {
+    fun getFullExamInfoById(applicantId: Int) {
         viewModelScope.launch {
             _fullExamResultById.value = useCases.getFullExamInfoById(applicantId)
         }
     }
 
-    override fun logout() {
+    fun logout() {
         viewModelScope.launch {
             saveDataStore.saveLoginData(
                 LoginDataStoreModel(

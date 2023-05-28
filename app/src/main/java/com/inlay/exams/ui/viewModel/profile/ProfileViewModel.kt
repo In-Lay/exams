@@ -8,20 +8,20 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 
-abstract class ProfileViewModel: ViewModel() {
-    abstract val applicant: StateFlow<Applicant?>
-
-    abstract val fullExamResultById: StateFlow<List<ApplicantExamResult>>
-
-    abstract val averageScore: StateFlow<Int?>
-
-    abstract val facultyInfoTeacher: StateFlow<Teacher>
-
-    abstract fun getTeacherById(teacherId: Int)
-
-    abstract fun calculateAverageScore(applicantId: Int)
-
-    abstract fun getFullExamInfoById(applicantId: Int)
-
-    abstract fun logout()
-}
+//abstract class ProfileViewModel: ViewModel() {
+//    abstract val applicant: StateFlow<Applicant?>
+//
+//    abstract val fullExamResultById: StateFlow<List<ApplicantExamResult>>
+//
+//    abstract val averageScore: StateFlow<Int?>
+//
+//    abstract val facultyInfoTeacher: StateFlow<Teacher>
+//
+//    abstract fun getTeacherById(teacherId: Int)
+//
+//    abstract fun calculateAverageScore(applicantId: Int)
+//
+//    abstract fun getFullExamInfoById(applicantId: Int)
+//
+//    abstract fun logout()
+//}

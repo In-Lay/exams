@@ -41,17 +41,17 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-//    @Inject
-//    lateinit var loginViewModel: LoginViewModel
-
     @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+    lateinit var loginViewModel: LoginViewModel
 
-    private val facultyInfoViewModel by viewModels<FacultyInfoViewModel> { viewModelFactory }
-    private val loginScreenViewModel by viewModels<LoginScreenViewModel> { viewModelFactory }
-    private val profileViewModel by viewModels<ProfileViewModel> { viewModelFactory }
-    private val examsViewModel by viewModels<ExamsViewModel> { viewModelFactory }
-    private val loginViewModel by viewModels<LoginViewModel> { viewModelFactory }
+//    @Inject
+//    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+//    private val loginViewModel: LoginViewModel by viewModels()
+    private val facultyInfoViewModel: FacultyInfoViewModel by viewModels()
+    private val loginScreenViewModel: LoginScreenViewModel by viewModels()
+    private val profileViewModel: ProfileViewModel by viewModels()
+    private val examsViewModel: ExamsViewModel by viewModels()
 
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {

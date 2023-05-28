@@ -1,6 +1,7 @@
 package com.inlay.exams.ui.viewModel.facultyInfo
 
 import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.inlay.exams.data.database.entities.Faculty
 import com.inlay.exams.domain.database.UseCases
@@ -10,24 +11,26 @@ import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
 @HiltViewModel
-class FacultyInfoViewModelImpl @Inject constructor(
+class FacultyInfoViewModel @Inject constructor(
     private val useCases: UseCases
-) : FacultyInfoViewModel() {
+) : ViewModel() {
     private val _faculty = MutableStateFlow(Faculty(0, ""))
-    override val faculty = _faculty
+    val faculty: StateFlow<Faculty> = _faculty
 
     private val _applicantsWithAvgScore = MutableStateFlow<List<ApplicantWithAvgScoreUiModel>>(
         mutableListOf()
     )
-    override val applicantsWithAvgScore = _applicantsWithAvgScore
+    val applicantsWithAvgScore: StateFlow<List<ApplicantWithAvgScoreUiModel>> =
+        _applicantsWithAvgScore
 
 
-    override fun getFaculty() {
+    fun getFaculty() {
         viewModelScope.launch {
             _faculty.value = useCases.getFaculty()
         }
